@@ -62,7 +62,7 @@ Este es un proyecto Angular que implementa un sistema de autenticación con vali
 2. Generar un informe de cobertura:
 
    ```bash
-   npm run test -- --coverage
+   npm run test --coverage
    ```
 
    El informe estará disponible en la carpeta `coverage/`. Abre el archivo `index.html` para verlo en el navegador:
