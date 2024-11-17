@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.userService.logout(); // Actualizar el estado usando el servicio
+    this.userService.logout();
     this.router.navigate(['/']);
   }
 }

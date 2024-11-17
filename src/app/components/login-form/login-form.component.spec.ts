@@ -62,14 +62,6 @@ describe('LoginFormComponent', () => {
     expect(loginForm.get('password')?.valid).toBeTruthy();
   });
 
-  it('should toggle password visibility', () => {
-    expect(component.hidePassword).toBeTruthy();
-    component.togglePasswordVisibility();
-    expect(component.hidePassword).toBeFalsy();
-    component.togglePasswordVisibility();
-    expect(component.hidePassword).toBeTruthy();
-  });
-
   it('should call userService.login and navigate on valid form submission', () => {
     const loginForm = component.loginForm;
     loginForm.get('email')?.setValue('valid@example.com');

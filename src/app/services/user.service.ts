@@ -5,13 +5,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  // Estado inicial del usuario (no autenticado)
   private userSubject = new BehaviorSubject<{ email: string | null; isLoggedIn: boolean }>({
     email: null,
     isLoggedIn: false,
   });
 
-  // Observable del estado del usuario
   user$ = this.userSubject.asObservable();
 
   // Método para iniciar sesión

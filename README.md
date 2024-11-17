@@ -77,7 +77,7 @@ Este es un proyecto Angular que implementa un sistema de autenticación con vali
 
 - **app/components/**: Contiene los componentes reutilizables como el formulario de login y el carrusel.
 - **app/services/**: Contiene servicios como `UserService` para gestionar el estado del usuario.
-- **app/guards/**: Contiene los guards como `LoginGuard` y `AuthGuard` para proteger las rutas.
+- **app/guards/**: Contiene guards como `AuthGuard` para proteger las rutas.
 
 ---
 

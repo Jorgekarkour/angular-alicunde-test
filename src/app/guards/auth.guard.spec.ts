@@ -3,45 +3,70 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { AuthGuard } from './auth.guard';
 import { UserService } from '../services/user.service';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-class MockRouter {
-  navigate = jest.fn();
-}
+// Mock for Router
+const routerMock = {
+  navigate: jest.fn(),
+};
 
-class MockUserService {
-  user$ = of({ isLoggedIn: false });
-}
+// Mock for UserService
+const userServiceMock = {
+  user$: of({ email: 'test@example.com', isLoggedIn: false }),
+};
+
+// Mock route and state
+const mockRoute: ActivatedRouteSnapshot = {
+  data: {},
+} as ActivatedRouteSnapshot;
+
+const mockState: RouterStateSnapshot = {
+  url: '/test',
+} as RouterStateSnapshot;
 
 describe('AuthGuard', () => {
-  let mockRouter: MockRouter;
-  let mockUserService: MockUserService;
-
   beforeEach(() => {
-    mockRouter = new MockRouter();
-    mockUserService = new MockUserService();
+    jest.clearAllMocks(); // Clear mocks before each test
 
     TestBed.configureTestingModule({
       providers: [
-        { provide: Router, useValue: mockRouter },
-        { provide: UserService, useValue: mockUserService },
+        { provide: Router, useValue: routerMock },
+        { provide: UserService, useValue: userServiceMock },
       ],
     });
   });
 
-  it('should prevent navigation and redirect to login if user is not logged in', () => {
-    mockUserService.user$ = of({ isLoggedIn: false });
+  it('should allow access when requiresAuth is true and user is logged in', () => {
+    userServiceMock.user$ = of({ email: 'test@example.com', isLoggedIn: true });
 
-    const result = TestBed.runInInjectionContext(() => AuthGuard({} as any, {} as any));
-
-    expect(result).toBeFalsy();
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
+    const result = TestBed.runInInjectionContext(() => AuthGuard(mockRoute, mockState));
+    expect(result).toBe(true);
+    expect(routerMock.navigate).not.toHaveBeenCalled();
   });
 
-  it('should allow navigation if user is logged in', () => {
-    mockUserService.user$ = of({ isLoggedIn: true });
+  it('should deny access and navigate to login when requiresAuth is true and user is not logged in', () => {
+    userServiceMock.user$ = of({ email: 'test@example.com', isLoggedIn: false });
 
-    const result = TestBed.runInInjectionContext(() => AuthGuard({} as any, {} as any));
+    const result = TestBed.runInInjectionContext(() => AuthGuard(mockRoute, mockState));
+    expect(result).toBe(false);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
+  });
 
-    expect(result).toBeTruthy();
+  it('should deny access and navigate to success when requiresAuth is false and user is logged in', () => {
+    userServiceMock.user$ = of({ email: 'test@example.com', isLoggedIn: true });
+    mockRoute.data = { requiresAuth: false };
+
+    const result = TestBed.runInInjectionContext(() => AuthGuard(mockRoute, mockState));
+    expect(result).toBe(false);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/success']);
+  });
+
+  it('should allow access when requiresAuth is false and user is not logged in', () => {
+    userServiceMock.user$ = of({ email: 'test@example.com', isLoggedIn: false });
+    mockRoute.data = { requiresAuth: false };
+
+    const result = TestBed.runInInjectionContext(() => AuthGuard(mockRoute, mockState));
+    expect(result).toBe(true);
+    expect(routerMock.navigate).not.toHaveBeenCalled();
   });
 });

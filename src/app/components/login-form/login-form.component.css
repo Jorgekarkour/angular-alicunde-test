@@ -1,11 +1,9 @@
-/* Aplicar box-sizing a todos los elementos */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Contenedor principal */
 .login-form__container {
   max-width: 400px;
   margin: 50px auto;
@@ -16,14 +14,13 @@
   font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Espaciado entre los elementos internos */
+  gap: 15px;
 }
 
-/* Inputs */
 .login-form__input {
-  width: 100%; /* Considera el padding del contenedor */
+  width: 100%;
   padding: 10px;
-  margin: 0; /* Elimina márgenes externos */
+  margin: 0; 
   border: 1px solid #dddddd;
   border-radius: 4px;
   font-size: 14px;
@@ -36,7 +33,6 @@
   box-shadow: 0 0 3px rgba(98, 0, 234, 0.5);
 }
 
-/* Botones y otros elementos */
 .login-form__button {
   width: 100%;
   padding: 10px;
@@ -65,7 +61,7 @@
     font-weight: 500;
     margin-bottom: 5px;
     color: #333333;
-    letter-spacing: 0.5px; /* Añade un poco de espacio entre letras */
+    letter-spacing: 0.5px;
   }
 
 .login-form__error {
