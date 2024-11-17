@@ -4,18 +4,14 @@ Este es un proyecto Angular que implementa un sistema de autenticación con vali
 
 ## Tecnologías
 
-- Angular 18
-- Jest para pruebas unitarias
-
----
+- **Angular 18**
+- **Jest** para pruebas unitarias
 
 ## Requisitos Previos
 
-- Node.js >= 16.x
-- Angular CLI >= 15.x
-- Jest >= 29.x
-
----
+- **Node.js** >= 16.x
+- **Angular CLI** >= 15.x
+- **Jest** >= 29.x
 
 ## Instalación
 
@@ -36,72 +32,50 @@ Este es un proyecto Angular que implementa un sistema de autenticación con vali
    npm install
    ```
 
----
-
 ## Ejecución
 
-1. Para ejecutar el proyecto en modo de desarrollo:
+Para ejecutar el proyecto en modo de desarrollo:
 
-   ```bash
-   ng serve
-   ```
+```bash
+ng serve
+```
 
-2. Accede a la aplicación en:
-   [http://localhost:4200](http://localhost:4200)
+Accede a la aplicación en: [http://localhost:4200]
 
----
+### Requisitos para probar el proyecto
+
+- **Inicio de sesión:**
+  - Ingresa un correo electrónico válido (por ejemplo, `usuario@correo.com`).
+  - Ingresa una contraseña con al menos 6 caracteres. (Puedes inventar una contraseña).
+- **Navegación:**
+  - Tras iniciar sesión, se mostrará un carrusel con 3 animaciones en el que puedes navegar.
+  - Para volver al formulario de inicio de sesión, haz clic en el botón "Cerrar sesión".
 
 ## Testeo
 
-1. Ejecutar las pruebas unitarias:
+### Ejecutar las pruebas unitarias:
 
-   ```bash
-   npm run test
-   ```
+```bash
+npm run test
+```
 
-2. Generar un informe de cobertura:
+### Generar un informe de cobertura:
 
-   ```bash
-   npm run test --coverage
-   ```
+```bash
+npm run test --coverage
+```
 
-   El informe estará disponible en la carpeta `coverage/`. Abre el archivo `index.html` para verlo en el navegador:
+El informe estará disponible en la carpeta `coverage/`. Abre el archivo `index.html` para verlo en el navegador:
 
-   ```bash
-   npx serve coverage
-   ```
-
----
+```bash
+npx serve coverage
+```
 
 ## Arquitectura
 
-- **app/components/**: Contiene los componentes reutilizables como el formulario de login y el carrusel.
-- **app/services/**: Contiene servicios como `UserService` para gestionar el estado del usuario.
-- **app/guards/**: Contiene guards como `AuthGuard` para proteger las rutas.
-
----
-
-## Contribuciones
-
-1. Haz un fork del repositorio.
-2. Crea una rama para tu funcionalidad:
-   ```bash
-   git checkout -b feature/nueva-funcionalidad
-   ```
-3. Realiza los cambios y asegúrate de que los tests pasen:
-   ```bash
-   npm run test
-   ```
-4. Envía un pull request.
-
----
-
-## Problemas Conocidos
-
-1. **Error al usar objetos como `window` o `document`:**
-   Solución: Usa `isPlatformBrowser` para verificar si el código se ejecuta en el cliente.
-
----
+- **`app/components/`:** Contiene los componentes reutilizables como el formulario de login y el carrusel.
+- **`app/services/`:** Contiene servicios como `UserService` para gestionar el estado del usuario.
+- **`app/guards/`:** Contiene guards como `AuthGuard` para proteger las rutas.
 
 ## Licencia
 
