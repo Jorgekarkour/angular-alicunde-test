@@ -1,0 +1,23 @@
+<div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form__container">
+        <div>
+            <label for="email" class="login-form__label">Email:</label>
+            <input id="email" class="login-form__input" formControlName="email" type="email" placeholder="Ingrese su email" />
+            @if (loginForm.get('email')?.errors?.['pattern']) {
+              <small class="login-form__error">Por favor, ingrese un email válido.</small>
+            }
+            @if (loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched) {
+              <small class="login-form__error">El email es obligatorio.</small>
+            }
+        </div>
+        <div>
+            <label for="password" class="login-form__label">Contraseña:</label>
+            <input id="password" class="login-form__input" formControlName="password" type="password" placeholder="Ingrese su contraseña" />
+            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+              <small class="login-form__error">La contraseña debe tener al menos 6 caracteres.</small>
+            }
+        </div>
+  
+      <button type="submit" class="login-form__button" [disabled]="loginForm.invalid">Iniciar sesión</button>
+    </form>
+  </div>

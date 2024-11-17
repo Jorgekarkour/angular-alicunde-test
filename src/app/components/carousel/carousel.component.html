@@ -1,0 +1,11 @@
+<div class="carousel">
+    <button class="carousel__button carousel__button--prev" (click)="prev()">&#9664;</button>
+    <img [src]="images[activeImageIndex]" alt="Imagen del carrusel" class="carousel__image">
+    <button class="carousel__button carousel__button--next" (click)="next()">&#9654;</button>
+  
+    <div class="carousel__indicators">
+        @for (img of images; track $index) {
+          <span [class.active]="$index === activeImageIndex" (click)="activeImageIndex = $index"></span>
+        }
+      </div>
+  </div>

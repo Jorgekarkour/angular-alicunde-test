@@ -1,0 +1,11 @@
+<div class="header">
+    @if (isLoggedIn) {
+      <div class="header__welcome">
+        Bienvenido, <strong>{{ userEmail }}</strong>
+      </div>
+      <button class="header__logout" (click)="logout()">Cerrar sesión</button>
+    } @else {
+      <div class="header__welcome">Prueba Angular - Alicunde</div>
+    }
+  </div>
+  
